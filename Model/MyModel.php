@@ -23,6 +23,22 @@ class MyModel {
         }
     }
 
+
+
+
+    // 6 form validation
+    function htmlValidation($form_data){
+        // remove extra slash and comma or special character
+        $form_data = trim(stripcslashes(htmlspecialchars($form_data)));
+        // then prevent sql injection
+        $form_data = mysqli_real_escape_string($this->connection,$form_data);
+        return $form_data;
+    }
+
+
+
+
+
     function InsertData($tbl, $data) {
         $clms = implode(',', array_keys($data));
         $vals = implode("','", $data);
